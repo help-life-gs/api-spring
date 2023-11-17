@@ -51,7 +51,6 @@ public class Usuario implements UserDetails {
 		this.email = email;
 		this.dataNasc = dataNasc;
 		this.telefone = telefone;
-		this.email = email;
 		this.senha = senha;
 	}
 

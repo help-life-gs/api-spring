@@ -1,7 +1,5 @@
 package br.com.fiap.helplife.controllers;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,9 +17,6 @@ import jakarta.validation.Valid;
 
 @RestController
 public class UsuarioController {
-
-    Logger log = LoggerFactory.getLogger(getClass());
-
     @Autowired
     UsuarioRepository repository;
 
@@ -35,10 +30,12 @@ public class UsuarioController {
     TokenService tokenService;
 
     @PostMapping("/api/registrar")
-    public ResponseEntity<Usuario> registrar(@RequestBody @Valid Usuario usuario) {
+    public ResponseEntity<Object> registrar(@RequestBody @Valid Usuario usuario) {
         usuario.setSenha(encoder.encode(usuario.getSenha()));
         repository.save(usuario);
-        return ResponseEntity.status(HttpStatus.CREATED).body(usuario);
+        Credencial credencial = new Credencial(usuario.getEmail(), usuario.getSenha());
+        var token = tokenService.generateToken(credencial);
+        return ResponseEntity.status(HttpStatus.CREATED).body(token);
     }
 
     @PostMapping("/api/login")

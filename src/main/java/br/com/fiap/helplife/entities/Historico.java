@@ -35,6 +35,12 @@ public class Historico {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataMedicao;
 
+    @Column(name = "LATITUDE")
+    private Long latitude;
+
+    @Column(name = "LONGITUDE")
+    private Long longitude;
+
     @ManyToOne
     @JoinColumn(name = "ID_USUARIO", nullable = false)
     private Usuario usuario;
@@ -42,12 +48,14 @@ public class Historico {
     public Historico() {
     }
 
-    public Historico(Long temperatura, Long oxigenio, Long batimentos, Date dataMedicao, Usuario usuario) {
+    public Historico(Long temperatura, Long oxigenio, Long batimentos, Date dataMedicao, Long latitude, Long longitude, Usuario usuario) {
         super();
         this.temperatura = temperatura;
         this.oxigenio = oxigenio;
         this.batimentos = batimentos;
         this.dataMedicao = dataMedicao;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.usuario = usuario;
     }
 
@@ -81,6 +89,22 @@ public class Historico {
 
     public void setBatimentos(Long batimentos) {
         this.batimentos = batimentos;
+    }
+
+    public Long getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Long latitude) {
+        this.latitude = latitude;
+    }
+
+    public Long getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Long longitude) {
+        this.longitude = longitude;
     }
 
     public Date getDataMedicao() {
