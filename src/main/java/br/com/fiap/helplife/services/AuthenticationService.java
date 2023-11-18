@@ -10,13 +10,13 @@ import br.com.fiap.helplife.repositories.UsuarioRepository;
 
 @Service
 public class AuthenticationService implements UserDetailsService {
-	
-	@Autowired
-	private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return usuarioRepository.findByEmail(email);
     }
-    
+
 }

@@ -21,21 +21,23 @@ import jakarta.validation.ConstraintViolationException;
 @RestControllerAdvice
 public class RestExceptionHandler {
     Logger log = LoggerFactory.getLogger(RestExceptionHandler.class);
-    
+
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<List<RestErrors>> constraintViolationExceptionHandler(ConstraintViolationException e){
+    public ResponseEntity<List<RestErrors>> constraintViolationExceptionHandler(ConstraintViolationException e) {
         log.error("Erro capturado pelo Handler");
         List<RestErrors> erros = new ArrayList<>();
 
-        e.getConstraintViolations().forEach(v -> erros.add(new RestErrors(v.getPropertyPath().toString(),  v.getMessage())));
+        e.getConstraintViolations()
+                .forEach(v -> erros.add(new RestErrors(v.getPropertyPath().toString(), v.getMessage())));
 
         return ResponseEntity.badRequest().body(erros);
     }
 
     @ExceptionHandler(ResponseStatusException.class)
-    public ResponseEntity<StatusError> ResponseStatusExceptionHandler(ResponseStatusException e){
-        return ResponseEntity.status(e.getStatusCode()).body(new StatusError(e.getStatusCode().value(), e.getBody().getDetail()));
+    public ResponseEntity<StatusError> ResponseStatusExceptionHandler(ResponseStatusException e) {
+        return ResponseEntity.status(e.getStatusCode())
+                .body(new StatusError(e.getStatusCode().value(), e.getBody().getDetail()));
     }
 
 }

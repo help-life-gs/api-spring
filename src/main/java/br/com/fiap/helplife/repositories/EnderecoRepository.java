@@ -9,6 +9,6 @@ import br.com.fiap.helplife.entities.Endereco;
 import br.com.fiap.helplife.entities.Usuario;
 
 @Repository
-public interface EnderecoRepository extends JpaRepository<Endereco, Long>{
-    List<Endereco>findByUsuario(Usuario usuario);
+public interface EnderecoRepository extends JpaRepository<Endereco, Long> {
+    List<Endereco> findByUsuario(Usuario usuario);
 }

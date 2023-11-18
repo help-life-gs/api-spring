@@ -48,7 +48,8 @@ public class Historico {
     public Historico() {
     }
 
-    public Historico(Long temperatura, Long oxigenio, Long batimentos, Long latitude, Long longitude, Date dataMedicao, Usuario usuario) {
+    public Historico(Long temperatura, Long oxigenio, Long batimentos, Long latitude, Long longitude, Date dataMedicao,
+            Usuario usuario) {
         super();
         this.temperatura = temperatura;
         this.oxigenio = oxigenio;

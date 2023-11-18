@@ -23,6 +23,7 @@ import br.com.fiap.helplife.services.HistoricoService;
 import jakarta.validation.Valid;
 
 @RestController
+@RequestMapping("/api/historico")
 public class HistoricoController {
 
     @Autowired
@@ -41,14 +42,14 @@ public class HistoricoController {
         return ResponseEntity.ok(getHistorico(id));
     }
 
-    @PostMapping("/api/historico")
+    @PostMapping("/")
     public ResponseEntity<Historico> create(@RequestBody @Valid Historico historico) {
         Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         historico.setUsuario(usuario);
-        
+
         Date dataMedicao = new Date();
         historico.setDataMedicao(dataMedicao);
-        
+
         repository.save(historico);
         return ResponseEntity.status(HttpStatus.CREATED).body(historico);
     }

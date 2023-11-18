@@ -17,19 +17,19 @@ public class TokenService {
     public TokenJwt generateToken(Credencial credencial) {
         Algorithm alg = Algorithm.HMAC256("secret");
         String token = JWT.create()
-                    .withSubject(credencial.email())
-                    .withIssuer("HelpTE")
-                    .withExpiresAt(Instant.now().plus(2, ChronoUnit.HOURS))
-                    .sign(alg);
+                .withSubject(credencial.email())
+                .withIssuer("HelpTE")
+                .withExpiresAt(Instant.now().plus(2, ChronoUnit.HOURS))
+                .sign(alg);
         return new TokenJwt(token);
     }
 
     public String valide(String token) {
         Algorithm alg = Algorithm.HMAC256("secret");
         return JWT.require(alg)
-                    .withIssuer("HelpTE")
-                    .build()
-                    .verify(token)
-                    .getSubject();
-    }    
+                .withIssuer("HelpTE")
+                .build()
+                .verify(token)
+                .getSubject();
+    }
 }

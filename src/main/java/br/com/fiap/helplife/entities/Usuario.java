@@ -15,36 +15,37 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="USUARIO")
+@Table(name = "USUARIO")
 public class Usuario implements UserDetails {
 
 	@Id
-	@Column(name="ID_USUARIO")
+	@Column(name = "ID_USUARIO")
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "usuario")
-    private Long id;
+	private Long id;
 
-	@Column(name="NOME")
+	@Column(name = "NOME")
 	private String nome;
 
-	@Column(name="EMAIL")
+	@Column(name = "EMAIL")
 	private String email;
 
-	@Column(name="DATA_NASC")
+	@Column(name = "DATA_NASC")
 	private Date dataNasc;
 
-	@Column(name="TELEFONE")
+	@Column(name = "TELEFONE")
 	private String telefone;
 
-	@Column(name="SENHA")
+	@Column(name = "SENHA")
 	private String senha;
-	
-	public Usuario () {}
-	
+
+	public Usuario() {
+	}
+
 	public Usuario(String email, String senha) {
 		this.email = email;
 		this.senha = senha;
 	}
-	
+
 	public Usuario(String nome, String email, Date dataNasc, String telefone, String senha) {
 		super();
 		this.nome = nome;
@@ -101,39 +102,39 @@ public class Usuario implements UserDetails {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
+
 	@Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(() -> "ROLE_USUARIO");
-    }
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return List.of(() -> "ROLE_USUARIO");
+	}
 
-    @Override
-    public String getPassword() {
-        return senha;
-    }
+	@Override
+	public String getPassword() {
+		return senha;
+	}
 
-    @Override
-    public String getUsername() {
-        return email;
-    }
+	@Override
+	public String getUsername() {
+		return email;
+	}
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
 
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
 }

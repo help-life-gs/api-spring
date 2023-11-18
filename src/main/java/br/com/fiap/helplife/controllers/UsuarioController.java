@@ -4,9 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.helplife.entities.Usuario;
@@ -16,6 +19,7 @@ import br.com.fiap.helplife.services.TokenService;
 import jakarta.validation.Valid;
 
 @RestController
+@RequestMapping("/api")
 public class UsuarioController {
     @Autowired
     UsuarioRepository repository;
@@ -29,7 +33,7 @@ public class UsuarioController {
     @Autowired
     TokenService tokenService;
 
-    @PostMapping("/api/registrar")
+    @PostMapping("/registrar")
     public ResponseEntity<Object> registrar(@RequestBody @Valid Usuario usuario) {
         usuario.setSenha(encoder.encode(usuario.getSenha()));
         repository.save(usuario);
@@ -38,11 +42,20 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.CREATED).body(token);
     }
 
-    @PostMapping("/api/login")
+    @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody @Valid Credencial credencial) {
         manager.authenticate(credencial.toAuthentication());
         var token = tokenService.generateToken(credencial);
         return ResponseEntity.ok(token);
+    }
+
+    @PutMapping("/atualizar")
+    public ResponseEntity<Usuario> update(@RequestBody @Valid Usuario usuario) {
+        Usuario usuarioSalvo = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        usuario.setId(usuarioSalvo.getId());
+        usuario.setSenha(usuarioSalvo.getSenha());
+        repository.save(usuario);
+        return ResponseEntity.ok(usuario);
     }
 
 }

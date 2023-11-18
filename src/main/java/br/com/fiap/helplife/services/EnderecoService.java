@@ -12,11 +12,11 @@ import br.com.fiap.helplife.repositories.EnderecoRepository;
 
 @Service
 public class EnderecoService {
-    
+
     @Autowired
     EnderecoRepository repository;
 
-    public List<Endereco> findAll(){
+    public List<Endereco> findAll() {
         var authentication = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = (Usuario) authentication.getPrincipal();
 

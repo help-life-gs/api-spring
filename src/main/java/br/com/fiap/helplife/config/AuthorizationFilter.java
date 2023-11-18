@@ -23,17 +23,17 @@ public class AuthorizationFilter extends OncePerRequestFilter {
 
     @Autowired
     TokenService tokenService;
-    
+
     @Autowired
     private UsuarioRepository usuarioRepository;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-    	
+
         var token = getToken(request);
 
-        if (token != null){
+        if (token != null) {
             String email = tokenService.valide(token);
             Usuario usuario = usuarioRepository.findByEmail(email);
             Authentication auth = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
@@ -52,5 +52,5 @@ public class AuthorizationFilter extends OncePerRequestFilter {
 
         return header.replace("Bearer ", "");
     }
-    
+
 }

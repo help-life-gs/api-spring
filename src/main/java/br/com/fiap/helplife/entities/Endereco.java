@@ -10,34 +10,35 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="ENDERECO")
+@Table(name = "ENDERECO")
 public class Endereco {
 
     @Id
-    @Column(name="ID_ENDERECO")
-	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "endereco")
+    @Column(name = "ID_ENDERECO")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "endereco")
     private Long id;
 
-    @Column(name="CEP", nullable = false, length = 8)
+    @Column(name = "CEP", nullable = false, length = 8)
     private String cep;
 
-    @Column(name="ESTADO", nullable = false, length = 2)
+    @Column(name = "ESTADO", nullable = false, length = 2)
     private String estado;
 
-    @Column(name="CIDADE", nullable = false, length = 100)
+    @Column(name = "CIDADE", nullable = false, length = 100)
     private String cidade;
 
-    @Column(name="LOGRADOURO", nullable = false, length = 100)
+    @Column(name = "LOGRADOURO", nullable = false, length = 100)
     private String logradouro;
 
-    @Column(name="NUMERO", nullable = false, length = 5)
+    @Column(name = "NUMERO", nullable = false, length = 5)
     private String numero;
 
     @ManyToOne
-	@JoinColumn(name="ID_USUARIO", nullable = false)
-	private Usuario usuario;
+    @JoinColumn(name = "ID_USUARIO", nullable = false)
+    private Usuario usuario;
 
-    public Endereco() {}
+    public Endereco() {
+    }
 
     public Endereco(String cep, String estado, String cidade, String logradouro, String numero, Usuario usuario) {
         super();
@@ -54,7 +55,7 @@ public class Endereco {
     }
 
     public void setId(Long id) {
-        this.id = id; 
+        this.id = id;
     }
 
     public String getCep() {
@@ -70,7 +71,7 @@ public class Endereco {
     }
 
     public void setEstado(String estado) {
-        this.estado = estado; 
+        this.estado = estado;
     }
 
     public String getCidade() {
@@ -86,22 +87,22 @@ public class Endereco {
     }
 
     public void setLogradouro(String logradouro) {
-        this.logradouro = logradouro; 
+        this.logradouro = logradouro;
     }
-        
+
     public String getNumero() {
         return numero;
     }
 
     public void setNumero(String numero) {
-        this.numero = numero; 
-    } 
-    
-    public Usuario getUsuario() {
-		return usuario;
-	}
+        this.numero = numero;
+    }
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }

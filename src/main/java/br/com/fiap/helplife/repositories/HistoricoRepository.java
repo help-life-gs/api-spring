@@ -10,5 +10,5 @@ import br.com.fiap.helplife.entities.Usuario;
 
 @Repository
 public interface HistoricoRepository extends JpaRepository<Historico, Long> {
-    List<Historico>findByUsuario(Usuario usuario);
+    List<Historico> findByUsuario(Usuario usuario);
 }

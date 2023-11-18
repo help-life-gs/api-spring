@@ -12,11 +12,11 @@ import br.com.fiap.helplife.repositories.HistoricoRepository;
 
 @Service
 public class HistoricoService {
-    
+
     @Autowired
     HistoricoRepository repository;
 
-    public List<Historico> findAll(){
+    public List<Historico> findAll() {
         var authentication = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = (Usuario) authentication.getPrincipal();
 
