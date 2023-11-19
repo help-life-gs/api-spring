@@ -52,10 +52,13 @@ public class UsuarioController {
     @PutMapping("/atualizar")
     public ResponseEntity<Usuario> update(@RequestBody @Valid Usuario usuario) {
         Usuario usuarioSalvo = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        usuario.setId(usuarioSalvo.getId());
-        usuario.setSenha(usuarioSalvo.getSenha());
-        repository.save(usuario);
-        return ResponseEntity.ok(usuario);
+        usuarioSalvo.setNome(usuario.getNome());
+        usuarioSalvo.setEmail(usuario.getEmail());
+        usuarioSalvo.setDataNasc(usuario.getDataNasc());
+        usuarioSalvo.setEmail(usuario.getEmail());
+        usuarioSalvo.setSenha(encoder.encode(usuario.getSenha()));
+        repository.save(usuarioSalvo);
+        return ResponseEntity.ok(usuarioSalvo);
     }
 
 }
