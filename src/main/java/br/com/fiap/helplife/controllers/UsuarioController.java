@@ -33,7 +33,7 @@ public class UsuarioController {
     @Autowired
     TokenService tokenService;
 
-    @PostMapping("/registrar")
+    @PostMapping("registrar")
     public ResponseEntity<Object> registrar(@RequestBody @Valid Usuario usuario) {
         usuario.setSenha(encoder.encode(usuario.getSenha()));
         repository.save(usuario);
@@ -42,14 +42,14 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.CREATED).body(token);
     }
 
-    @PostMapping("/login")
+    @PostMapping("login")
     public ResponseEntity<Object> login(@RequestBody @Valid Credencial credencial) {
         manager.authenticate(credencial.toAuthentication());
         var token = tokenService.generateToken(credencial);
         return ResponseEntity.ok(token);
     }
 
-    @PutMapping("/atualizar")
+    @PutMapping("atualizar")
     public ResponseEntity<Usuario> update(@RequestBody @Valid Usuario usuario) {
         Usuario usuarioSalvo = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         usuarioSalvo.setNome(usuario.getNome());

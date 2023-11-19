@@ -4,6 +4,9 @@
 A fim de proporcionar um acompanhamento exclusivo para pacientes da rede Notredame/Hapvida, criamos o HelpLife. Nosso produto irá monitorar cada beneficiário durante 24 horas para garantir sua proteção e prevenção de sua saúde. Além disso, poderão inicar um chat com um médico a sua escolha ou será disponibilizado um profissional qualificado.
 ## Recursos Utilizados
 
+### Diagrama de Macrosolução
+![DIAG](diagrama.png)
+
 ## Executando o Sistema e Criando o Pipeline na Azure
 
 ### Criação do Pipeline

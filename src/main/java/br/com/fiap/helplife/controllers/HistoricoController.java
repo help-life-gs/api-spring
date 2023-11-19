@@ -42,7 +42,7 @@ public class HistoricoController {
         return ResponseEntity.ok(getHistorico(id));
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<Historico> create(@RequestBody @Valid Historico historico) {
         Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         historico.setUsuario(usuario);
