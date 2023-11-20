@@ -55,8 +55,6 @@ public class UsuarioController {
         Usuario usuarioSalvo = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         usuarioSalvo.setNome(usuario.getNome());
         usuarioSalvo.setEmail(usuario.getEmail());
-        usuarioSalvo.setDataNasc(usuario.getDataNasc());
-        usuarioSalvo.setEmail(usuario.getEmail());
         usuarioSalvo.setSenha(encoder.encode(usuario.getSenha()));
         repository.save(usuarioSalvo);
         return ResponseEntity.ok(usuarioSalvo);
