@@ -1,5 +1,7 @@
 package br.com.fiap.helplife.controllers;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,14 +42,14 @@ public class UsuarioController {
         repository.save(usuario);
         Credencial credencial = new Credencial(usuario.getEmail(), usuario.getSenha());
         var token = tokenService.generateToken(credencial);
-        return ResponseEntity.status(HttpStatus.CREATED).body(token);
+        return ResponseEntity.status(HttpStatus.CREATED).body(Map.of("token", token, "usuario", usuario));
     }
 
     @PostMapping("login")
     public ResponseEntity<Object> login(@RequestBody @Valid Credencial credencial) {
         manager.authenticate(credencial.toAuthentication());
         var token = tokenService.generateToken(credencial);
-        return ResponseEntity.ok(token);
+        return ResponseEntity.ok(Map.of("token", token, "usuario", credencial));
     }
 
     @PutMapping("atualizar")
