@@ -48,8 +48,9 @@ public class UsuarioController {
     @PostMapping("login")
     public ResponseEntity<Object> login(@RequestBody @Valid Credencial credencial) {
         manager.authenticate(credencial.toAuthentication());
+        Usuario usuario = repository.findByEmail(credencial.email());
         var token = tokenService.generateToken(credencial);
-        return ResponseEntity.ok(Map.of("token", token, "usuario", credencial));
+        return ResponseEntity.ok(Map.of("token", token, "usuario", usuario));
     }
 
     @PutMapping("atualizar")
