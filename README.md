@@ -6,6 +6,20 @@ A fim de proporcionar um acompanhamento exclusivo para o paciente, criamos o Hel
 
 ### Diagrama de Macrosolução
 ![DIAG](diagrama.png)
+#### 1. FULL STACK ASP.NET MVC:
+Um site construído com o framework ASP.NET MVC, proporcionando aos médicos acesso às fichas dos pacientes e um sistema de chat para se comunicar com eles.
+
+#### 2. APLICATIVO REACT NATIVE:
+Um aplicativo móvel que se conecta ao servidor, permitindo que os pacientes cadastrem suas medições vitais e se comuniquem com os médicos através de um sistema de chat.
+
+#### 3. DISPOSITIVO IOT:
+Um dispositivo de Internet das Coisas projetado para coletar dados vitais dos usuários. Esse dispositivo interage com o aplicativo móvel, enviando informações sobre as medições vitais dos pacientes.
+
+#### 4. BANCO DE DADOS EM NUVEM:
+Um banco de dados em nuvem centralizado que armazena dados acessíveis tanto pela API Spring quanto pelo site ASP.NET MVC. Ele serve como o repositório central para todas as informações relacionadas aos pacientes, médicos e medições vitais.
+
+#### 5. API SPRING:
+Um servidor back-end baseado em Spring que gerencia e controla as requisições dos usuários. Esta API é responsável por integrar as informações entre o aplicativo React Native, o dispositivo IoT e o banco de dados em nuvem.
 
 ## Executando o Sistema e Criando o Pipeline na Azure
 
